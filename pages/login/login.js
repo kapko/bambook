@@ -8,7 +8,7 @@ export class Login extends React.Component {
     };
 
     goLogin() {
-        this.props.navigation.navigate(routes.tabs);
+        this.props.navigation.navigate('Main');
     }
 
     render() {

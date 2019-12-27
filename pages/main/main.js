@@ -1,9 +1,8 @@
 import React from "react";
-import {ScrollView, ActivityIndicator} from "react-native";
-import {Banner, Categories, Columns} from "../../components";
+import {ScrollView, ActivityIndicator, Animated} from "react-native";
+import {Banner, Categories, Columns, Header} from "../../components";
 import axios from 'axios';
 import {ENVIROMENT} from '../../env/env';
-
 
 const images = [
     'https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
@@ -12,21 +11,19 @@ const images = [
 
 const categoryImages = [
     {
-        url: 'https://analyticsindiamag.com/wp-content/uploads/2019/07/image_rec_lib_banner.jpg',
+        uri: 'https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
         name: 'first',
     },
     {
-        url: 'https://analyticsindiamag.com/wp-content/uploads/2019/07/image_rec_lib_banner.jpg',
+        uri: 'https://analyticsindiamag.com/wp-content/uploads/2019/07/image_rec_lib_banner.jpg',
         name: 'second',
     },
 ];
 
 export class MainPage extends React.Component {
-    static navigationOptions = {
-        title: 'YurtaKG',
-        headerTitleStyle: {
-            textAlign: "left",
-            flex: 1
+    static navigationOptions = ({navigation}) => {
+        return {
+            headerTitle: () => <Header nav={navigation} />
         }
     };
 
@@ -79,13 +76,12 @@ export class MainPage extends React.Component {
         }
 
         return (
-            <ScrollView style={{flex: 1, paddingHorizontal: 15, paddingVertical: 10}}>
+            <Animated.ScrollView style={{flex: 1, paddingHorizontal: 15, paddingVertical: 10}}>
                 <Banner data={this.state.data && this.state.data.banners} />
-                <Categories title={'Категории'} data={categoryImages} />
+                <Categories title={'Категории'} data={this.state.categories} />
                 <Banner data={this.state.data && this.state.data.banners} />
-                {/*<Banner title={'Распродажа'} images={images} />*/}
-                {/*<Columns data={categoryImages} />*/}
-            </ScrollView>
+                <Columns data={categoryImages} />
+            </Animated.ScrollView>
         );
     }
 

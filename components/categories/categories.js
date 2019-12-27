@@ -21,25 +21,20 @@ export class Categories extends React.Component {
     }
 
     render() {
-        console.log('props.categories', this.props.data);
-        if (!this.props.data) {
-            return <Text>'Some text'</Text>;
-        }
-
-        const categories = this.props.data.map((item, i) =>
-            <TouchableHighlight
-                key={`CATEGORIES_${i}`}
-                onPress={() => console.log('open new ')}>
-                <View style={[styles.slide, i === 0 ? styles.leftMargin : null]}>
-                    <Text style={styles.slideText}>{item.name}</Text>
-                    <Image resizeMode="contain"
-                           onLoadStart={() => this.setState({loading: true})}
-                           onLoadEnd={() => this.setState({loading: false})}
-                           style={styles.slideImage}
-                           source={item.url}/>
-                    {!this.state.loading && <ImageLoader loading={this.state.loading}/>}
-                </View>
-            </TouchableHighlight>
+        const categories = this.props.data.map((item, i) => {
+                return <TouchableHighlight
+                    key={`CATEGORIES_${i}`}
+                    onPress={() => console.log('open new ')}>
+                    <View style={[styles.slide, i === 0 ? styles.leftMargin : null]}>
+                        <Text style={styles.slideText}>{item.name}</Text>
+                        <Image resizeMode="cover"
+                               onLoadEnd={() => this.setState({loading: false})}
+                               style={styles.slideImage}
+                               source={{uri: item.url}}/>
+                        <ImageLoader loading={this.state.loading}/>
+                    </View>
+                </TouchableHighlight>;
+            }
         );
 
         return (
@@ -53,7 +48,6 @@ export class Categories extends React.Component {
                 </ScrollView>
             </View>
         );
-
     }
 }
 
@@ -72,22 +66,23 @@ const styles = StyleSheet.create({
     },
     slide: {
         position: 'relative',
-        width: (width / 2.4) - 30,
+        width: width / 2.7,
         height: 120,
         marginHorizontal: 5,
         borderRadius: 10,
         overflow: 'hidden',
-        backgroundColor: '#eee',
         justifyContent: 'center',
     },
     slideText: {
-        fontSize: 16,
-        zIndex: 2,
+        fontSize: 14,
         fontWeight: '700',
-        textAlignVertical: 'center',
-        paddingHorizontal: 20,
         color: '#fff',
         position: 'absolute',
+        zIndex: 2,
+        alignSelf: 'center',
+        textAlign: 'center',
+        paddingHorizontal: 10,
+        backgroundColor: 'rgba(52,26,26,0.61)',
     },
     slideImage: {
         flex: 1,

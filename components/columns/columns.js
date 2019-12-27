@@ -13,16 +13,16 @@ import {width} from "../../consts/resize";
 
 export class Columns extends React.Component {
     render() {
-        const column = this.props.data.map((url, i) => {
+        const column = this.props.data.map((item, i) => {
             return <TouchableOpacity key={`COLUMN_${i}`} style={styles.column}>
                 <View style={styles.imageParent}>
                     <Image
                         resizeMode="cover"
                         style={styles.image}
-                        source={{url}}/>
+                        source={{uri: item.uri}}/>
                     <Ionicons style={styles.icon} name="md-basket" size={32}/>
                 </View>
-                <Text style={styles.names}>Some text{i}</Text>
+                <Text style={styles.names}>1{item.name}</Text>
                 <Text style={styles.price}>Price{i} c</Text>
             </TouchableOpacity>
         });

@@ -1,4 +1,11 @@
-import {createAppContainer} from 'react-navigation';
-import { MainRouter } from './routes';
+import React, {Component} from 'react';
+import { SafeAreaView } from 'react-native';
+import AppContainer from './routes';
 
-export default createAppContainer(MainRouter);
+export default class App extends React.Component {
+    render() {
+        return (
+            <AppContainer />
+        )
+    }
+}

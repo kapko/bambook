@@ -1,16 +1,16 @@
 import React from "react";
 import {Text, View} from "react-native";
 
-export class ShopsPage extends React.Component {
+export class ProfilePage extends React.Component {
     static navigationOptions = {
-        title: 'Shops',
-        headerStyle:{ backgroundColor: '#FFF'},
+        title: 'Profile',
+        headerStyle:{ backgroundColor: '#eee'},
     };
 
     render() {
         return (
             <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                <Text onPress={() => this.props.navigation.replace('Login')}>NewDeviceStack Screen</Text>
+                <Text onPress={() => this.props.navigation.replace('Login')}>Profile Screen</Text>
             </View>
         );
     }
