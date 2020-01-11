@@ -7,7 +7,7 @@ import {createAppContainer} from "react-navigation";
 // local pages
 import {MainPage} from '../pages/main/main';
 import {ShopsPage} from "../pages/shops/shops";
-import {Login} from "../pages/login/login";
+import {LoginPage} from "../pages/login/loginPage";
 import {SearchPage} from "../pages/search/search";
 import {DetailsPage} from "../pages/details/details";
 import {ProfilePage} from "../pages/profile/profile";
@@ -17,11 +17,17 @@ import {TabBar} from '../components';
 // transitions
 import {transition} from "./router.transitions";
 import {routes} from "../consts/routes";
+import {darkBlue, fontColor} from "../consts/style.consts";
 
-const LoginNavigator = createStackNavigator({screen: Login});
 const ShopsPageNavigator = createStackNavigator({screen: ShopsPage});
 const BasketPageNavigator = createStackNavigator({screen: BasketPage});
 const ProfilePageNavigator = createStackNavigator({screen: ProfilePage});
+const LoginPageNavigator = createStackNavigator({
+    screen: LoginPage
+}, {
+    headerMode: "none"
+});
+
 const MainPageNavigator = createStackNavigator({
     MainPage: MainPage,
     SearchPage: SearchPage,
@@ -29,6 +35,37 @@ const MainPageNavigator = createStackNavigator({
 }, {
     transitionConfig: () => zoomIn(200),
 });
+
+// tabs
+const AuthNavigator = createMaterialTopTabNavigator({
+        Login: {
+            screen: LoginPageNavigator,
+            navigationOptions: {
+                tabBarLabel: 'Логин'
+            }
+        },
+        SignUp: {
+            screen: LoginPageNavigator,
+            navigationOptions: {
+                tabBarLabel: 'Регистрация'
+            }
+        },
+    }, {
+        initialRouteName: 'Login',
+        tabBarOptions: {
+            inactiveTintColor: 'rgba(92, 120, 153, 0.5)',
+            activeTintColor: fontColor,
+            style: {
+                backgroundColor: darkBlue,
+                paddingTop: 40,
+            },
+            indicatorStyle: {
+                backgroundColor: fontColor,
+                height: 2,
+            }
+        }
+    }
+);
 
 const TabNavigator = createMaterialTopTabNavigator({
         Main: MainPageNavigator,
@@ -43,10 +80,10 @@ const TabNavigator = createMaterialTopTabNavigator({
 );
 
 const MainRouter = createAnimatedSwitchNavigator({
+    authNavigator: AuthNavigator,
     tabNavigator: TabNavigator,
-    authNavigator: LoginNavigator
 }, {
-    initialRouteName: routes.auth,
+    initialRouteName: 'authNavigator',
     transition: (transition),
 });
 

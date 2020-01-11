@@ -61,7 +61,7 @@ export class TabBarButton extends React.Component {
     }
 
     componentDidMount() {
-        this.redirectTo(routes.main, 0);
+        // this.redirectTo(routes.main, 0);
     }
 
     render() {

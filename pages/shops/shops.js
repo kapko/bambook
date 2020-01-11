@@ -10,7 +10,7 @@ export class ShopsPage extends React.Component {
     render() {
         return (
             <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                <Text onPress={() => this.props.navigation.replace('Login')}>NewDeviceStack Screen</Text>
+                <Text>NewDeviceStack Screen</Text>
             </View>
         );
     }
