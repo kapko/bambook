@@ -35,7 +35,9 @@ export class LoginPage extends React.Component {
                     keyboardVerticalOffset={250}
                     style={styles.container}
                     enabled>
-                    <Logo/>
+                    <View style={styles.logoParent}>
+                        <Logo/>
+                    </View>
                     <View style={styles.forms}>
                         <InputField placeholder={'Почта'}/>
                         <InputField placeholder={'Пароль'}/>
@@ -54,8 +56,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
+    logoParent: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 0.7,
+    },
     forms: {
-        paddingBottom: 30,
+        flex: 0.3,
     },
     button: {
         alignItems: 'center',

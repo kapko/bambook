@@ -51,7 +51,6 @@ const AuthNavigator = createMaterialTopTabNavigator({
             activeTintColor: fontColor,
             style: {
                 backgroundColor: darkBlue,
-                paddingTop: 40,
             },
             indicatorStyle: {
                 backgroundColor: fontColor,
