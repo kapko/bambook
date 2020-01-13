@@ -1,72 +1,61 @@
 import React from 'react';
-import {View, StyleSheet, Text, TextInput, TouchableOpacity, Image} from 'react-native';
-import {routes} from "../../consts/routes";
-import {dark, darkBlue} from "../../consts/style.consts";
+import {
+    View,
+    StyleSheet,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native';
+import * as firebase from 'firebase';
+import {Logo, InputField, Button} from '../../components';
+import {dark} from "../../consts/style.consts";
 
 export class LoginPage extends React.Component {
-    static navigationOptions = {
-        tabBarLabel: 'First',
-    };
 
     goLogin() {
-        console.log('login');
+        firebase.auth().signInWithEmailAndPassword('letscodebishkek@gmail.com', '123123Kk')
+            .then(r => {
+                console.log(r.user.uid);
+            })
+            .catch(err => {
+                console.log(err.message);
+                // err.forEach(e => {
+                //     console.log(e);
+                // });
+            });
         // this.props.navigation.navigate('Main');
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.logo}>
-                    <Image
-                        resizeMode='contain'
-                        style={styles.image}
-                        source={require('../../assets/images/login.png')}/>
-                </View>
-                <View style={styles.forms}>
-                    <View style={styles.inputParent}>
-                        <TextInput
-                            autoCorrect={false}
-                            placeholder={'Ваша почта'}
-                            style={styles.input}/>
+            <TouchableWithoutFeedback
+                onPress={Keyboard.dismiss}>
+                <KeyboardAvoidingView
+                    behavior="padding"
+                    keyboardVerticalOffset={250}
+                    style={styles.container}
+                    enabled>
+                    <Logo/>
+                    <View style={styles.forms}>
+                        <InputField placeholder={'Почта'}/>
+                        <InputField placeholder={'Пароль'}/>
+                        <Button text={'Войти'} onPress={this.goLogin}/>
                     </View>
-                    <View style={styles.inputParent}>
-                        <TextInput
-                            autoCorrect={false}
-                            placeholder={'Пароль'}
-                            style={styles.input}/>
-                    </View>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={() => this.goLogin()}>
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
         );
     }
 }
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor: dark,
         paddingHorizontal: 15,
         flex: 1,
-        // alignItems: 'center',
         justifyContent: 'center',
     },
-    inputParent: {
-        paddingBottom: 30,
-    },
     forms: {
-        backgroundColor: 'red',
-        flex: 0.3,
-        paddingBottom: 60,
-    },
-    input: {
-        borderWidth: 1,
-        padding: 15,
-        borderColor: '#bcbcbc',
-        borderRadius: 3,
-        fontSize: 14
+        paddingBottom: 30,
     },
     button: {
         alignItems: 'center',
@@ -85,14 +74,6 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderRadius: 7,
     },
-    logo: {
-        flex: 0.7,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    image: {
-        width: '70%',
-        // height: '70%',
-    }
+
 });
 

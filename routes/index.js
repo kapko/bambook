@@ -12,6 +12,8 @@ import {SearchPage} from "../pages/search/search";
 import {DetailsPage} from "../pages/details/details";
 import {ProfilePage} from "../pages/profile/profile";
 import {BasketPage} from "../pages/basket/basket";
+import {SignUpPage} from "../pages/signup";
+
 // bottom component
 import {TabBar} from '../components';
 // transitions
@@ -19,14 +21,6 @@ import {transition} from "./router.transitions";
 import {routes} from "../consts/routes";
 import {darkBlue, fontColor} from "../consts/style.consts";
 
-const ShopsPageNavigator = createStackNavigator({screen: ShopsPage});
-const BasketPageNavigator = createStackNavigator({screen: BasketPage});
-const ProfilePageNavigator = createStackNavigator({screen: ProfilePage});
-const LoginPageNavigator = createStackNavigator({
-    screen: LoginPage
-}, {
-    headerMode: "none"
-});
 
 const MainPageNavigator = createStackNavigator({
     MainPage: MainPage,
@@ -39,19 +33,19 @@ const MainPageNavigator = createStackNavigator({
 // tabs
 const AuthNavigator = createMaterialTopTabNavigator({
         Login: {
-            screen: LoginPageNavigator,
+            screen: LoginPage,
             navigationOptions: {
                 tabBarLabel: 'Логин'
             }
         },
         SignUp: {
-            screen: LoginPageNavigator,
+            screen: SignUpPage,
             navigationOptions: {
                 tabBarLabel: 'Регистрация'
             }
         },
     }, {
-        initialRouteName: 'Login',
+        initialRouteName: 'SignUp',
         tabBarOptions: {
             inactiveTintColor: 'rgba(92, 120, 153, 0.5)',
             activeTintColor: fontColor,
@@ -69,9 +63,9 @@ const AuthNavigator = createMaterialTopTabNavigator({
 
 const TabNavigator = createMaterialTopTabNavigator({
         Main: MainPageNavigator,
-        Shop: ShopsPageNavigator,
-        Basket: BasketPageNavigator,
-        Profile: ProfilePageNavigator,
+        Shop: ShopsPage,
+        Basket: BasketPage,
+        Profile: ProfilePage,
     }, {
         tabBarPosition: 'bottom',
         initialRouteName: routes.main,

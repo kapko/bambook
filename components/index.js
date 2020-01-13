@@ -4,3 +4,6 @@ export {ImageLoader} from './image-loader/image-loader';
 export {Columns} from './columns/columns';
 export {Header} from './header/header';
 export {TabBar} from './tabbar/tabbar';
+export {Logo} from './logo/logo';
+export {InputField} from './input';
+export {Button} from './button';
