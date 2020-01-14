@@ -1,5 +1,5 @@
 export const routes = {
-    tabs: 'tabNavigator',
+    menu: 'menuNavigator',
     auth: 'authNavigator',
     // tab navigator
     main: 'Main',
