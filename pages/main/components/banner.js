@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     bannerLogo: {
-        width: 98,
-        height: 98,
+        width: 110,
+        height: 110,
         backgroundColor: '#E31E24',
         borderRadius: 10,
         justifyContent: 'center',
@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
     },
     bannerImage: {
         width: '100%',
-        height: 240,
+        height: 250,
     }
 });
